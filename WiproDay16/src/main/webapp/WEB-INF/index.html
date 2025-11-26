@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to Contact Manager</h1>
+    <button onclick="document.getElementById('formDiv').style.display='block'">Add Contact</button>
+
+    <div id="formDiv" style="display:none;">
+        <form action="ContactServlet" method="post">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="text" name="phone" placeholder="Enter Phone" required>
+            <button type="submit">Save Contact</button>
+        </form>
+    </div>
+</body>
+</html>
