@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Pure Functions</title>
+    </head>
+
+    <body>
+        <script>
+            
+            //WITHOUT USING MAP()
+            const salaries = [15000,45000,65000];
+            console.log(salaries[0]);
+            const newSalaries = [];
+
+            for(let i=0;i<salaries.length; i++)
+            {
+                newSalaries.push(salaries[i] + 10000);
+            }
+
+            console.log(newSalaries);
+
+            //USING PURE FUNCTON MAP()
+            const empSal = [35000,24000,15000];
+            //MAP()
+            const newEmpSal = empSal.map(sal => sal+10000);
+            console.log(newEmpSal);
+
+            //FILTER()
+            const highPaidSal = newEmpSal.filter(sal => sal>25000);
+            console.log(highPaidSal);
+
+            //REDUCE()
+            const totalSal = newEmpSal.reduce((sum,sal) => sum+sal,0);
+
+
+        </script>
+    </body>
+</html>

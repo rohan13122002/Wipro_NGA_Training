@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        Control statements
+    </head>
+
+    <body>
+        <script>
+            let score = prompt("Enter the score");
+            let age=prompt("enter the age");
+
+            if(score>=90)
+        {
+            console.log("Excellent");
+        }
+        else if(score<=60)
+        {
+            console.log("average");
+        }
+        else if(score<30)
+        {
+            console.log("fail");
+        }
+
+        for(let i=1 ; i<=3 ; i++)
+        {
+            console.log(i+" attempt is done");
+        }
+        if(age >= 18)
+        {
+            console.log("Eligible to vote");
+        }
+        else
+        {
+            console.log("Not eligible");
+        }
+
+        let day = prompt("enter the value as day name");
+        switch(day)
+        {
+            case "Monday":console.log("Today is "+day);
+            break;
+            case "Tuesday":console.log("Today is: "+day);
+            break;
+            default: console.log("Nothing matched");
+        }
+        </script>
+    </body>
+</html>

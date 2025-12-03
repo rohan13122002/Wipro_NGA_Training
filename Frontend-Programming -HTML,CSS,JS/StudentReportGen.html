@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Student Report Card</title>
+    </head>
+
+    <body>
+
+        <script>
+        //object creation
+        /*let s1 = {
+            name:prompt("Enter student1 name"),
+            marks:prompt("enter student1 marks")
+        };
+        
+        let s2 = {
+            name:prompt("enter student2 name"),
+            marks:prompt("enter student2 marks")
+        }
+
+        let s3 = {
+            name:prompt("enter student3 name"),
+            marks:prompt("enter stuent3 marks")
+        }
+
+        let Student = [s1,s2,s3];
+        */
+
+       
+        /*
+        for(let i=0; i<Student.length; i++)
+        {
+            if(typeof(Student.name[i]) != "string" )
+        {
+            console.log("Enter valid name");
+        }
+            
+        }
+        
+        //2.TO VALIDATE MARKS
+            for(let i=0; i<Student.length; i++)
+        {
+            if(typeof(Student.marks[i]) == "string")
+        {
+            console.log("enter valid marks")
+        }
+        }
+        */
+        
+
+         // Sample student data
+const students = [
+  { name: "Alice", marks: [85, 90, 88] },
+  { name: "Bob", marks: [70, "eighty", 65] }, // invalid
+  { name: 123, marks: [95, 92, 96] },         // invalid
+  { name: "Charlie", marks: [55, 60, 58] }
+];
+
+// Utility: Validate student record
+function validateStudent(student) {
+  if (typeof student.name !== "string") {
+    console.warn(`Invalid name for record:`, student);
+    return false;
+  }
+  if (!Array.isArray(student.marks) || student.marks.length !== 3) {
+    console.warn(`Invalid marks array for record:`, student);
+    return false;
+  }
+  for (let mark of student.marks) {
+    if (typeof mark !== "number") {
+      console.warn(`Invalid mark detected for ${student.name}:`, mark);
+      return false;
+    }
+  }
+  return true;
+}
+
+// Compute grade
+function computeGrade(avg) {
+  if (avg >= 85) return "A";
+  if (avg >= 70) return "B";
+  if (avg >= 50) return "C";
+  return "D";
+}
+
+// Scholarship logic
+function scholarship(grade) {
+  return grade === "A" ? "Eligible for Scholarship" : "No Scholarship";
+}
+
+// Generate report
+function generateReport(students) {
+  const report = [];
+  for (let student of students) {
+    if (!validateStudent(student)) continue; // skip invalid records
+
+    const total = student.marks.reduce((a, b) => a + b, 0);
+    const avg = total / student.marks.length;
+    const grade = computeGrade(avg);
+
+    report.push({
+      name: student.name,
+      marks: student.marks,
+      total,
+      average: avg.toFixed(2),
+      grade,
+      scholarship: scholarship(grade)
+    });
+  }
+  return report;
+}
+
+// Display report
+console.table(generateReport(students));
+
+
+
+
+        </script>
+
+
+    </body>
+</html>

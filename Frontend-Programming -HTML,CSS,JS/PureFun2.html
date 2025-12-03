@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Employee Salary</title>
+    </head>
+
+    <body>
+        <script>
+            const sal = [35000,20000,45000,50000];
+
+            //filter()
+            const minSal = sal.filter(sal => sal<45000);
+            console.log(minSal);
+
+            //map()
+            const addBonus = minSal.map(sal => sal + 15000);
+            console.log(addBonus);
+
+            //reduce()
+            const sumSal = sal.reduce((sal,sum) => sal + sum, 0);
+            console.log(sumSal);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Closure</title>
+    </head>
+
+    <body>
+        <script>
+            //CLOSURE IS WHEN A FUNCTION REMEMBERS ITS VARIABLE FROM AN OUTER SCOPE
+            function message()
+            {
+                let count =0;
+
+                function innerMessage()
+                {
+                    count++;
+                    document.write("The count is "+count);
+                }
+            }
+        </script>
+    </body>
+</html>
