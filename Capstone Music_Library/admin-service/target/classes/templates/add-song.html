@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><title>Add Song</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h2>Add Song (calls song-service)</h2>
+  <form id="songForm">
+    <input id="name" placeholder="Song name" required/><br/>
+    <input id="singer" placeholder="Singer"/><br/>
+    <input id="musicDirector" placeholder="Music Director"/><br/>
+    <input id="albumName" placeholder="Album"/><br/>
+    <input id="releaseDate" placeholder="2021-01-01"/><br/>
+    <label><input id="visible" type="checkbox" checked/> Visible</label><br/>
+    <button type="button" onclick="saveSong()">Save</button>
+  </form>
+
+<script>
+function saveSong(){
+  const s = {
+    name: document.getElementById('name').value,
+    singer: document.getElementById('singer').value,
+    musicDirector: document.getElementById('musicDirector').value,
+    albumName: document.getElementById('albumName').value,
+    releaseDate: document.getElementById('releaseDate').value,
+    visible: document.getElementById('visible').checked
+  };
+  fetch('/admin/proxy/songs', {   // proxy via admin -> calls song-service
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(s)
+  }).then(r=>r.json()).then(j=>{
+     alert('Saved id=' + j.id);
+     window.location='/admin/view-songs';
+  }).catch(e=>alert('Error: '+e));
+}
+</script>
+</body>
+</html>

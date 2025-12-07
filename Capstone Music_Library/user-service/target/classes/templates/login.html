@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+<style>
+body
+{
+	margin: 0;
+	padding:0;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(135deg, #000000, #0a0f24);
+	font-family: Arial, Helvetica, sans-serif;
+	color: #00eaff;
+}
+
+.title
+{
+	font-size: 48px;
+	font-weight: bold;
+	margin-bottom: 40px;
+	text-shadow: 0 0 15px #00eaff;
+	letter-spacing: 3px;
+}
+
+.login-box
+{
+	background: rgba(0, 0, 0,0.55);
+	padding: 30px 40px;
+	border-radius: 12px;
+	box-shadow: 0 0 15px #00eaff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login-box h2
+{
+	margin-top: 0;
+	margin-bottom: 20px;
+	color: #00eaff;
+	text-shadow: 0 0 8px #00eaff;
+}
+
+input
+{
+	width: 240px;
+	padding: 10px;
+	margin: 8px 0;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+}
+
+.btn
+{
+	background-color: #00eaff;
+	padding: 10px 25px;
+	border-radius: 5px;
+	border: none;
+	margin-top: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.register-link
+{
+	margin-top: 20px;
+	color: #00eaff;
+	font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+<div class="title">MUSIC LIBRARY</div>
+<div class="login-box">
+<h2>User Login</h2>
+  <form action="/user/login" method="post">
+  <label>Email</label>
+  <input type="email" name="email" required>
+  
+  <label>Password</label>
+  <input type="password" name="password" required>
+  
+  <button type="submit">Login</button>
+  </form>
+  <div class="register-link">
+  <p><a href="/user/register">New user? Register here</a></p>
+  </div>
+</div>
+</body>
+</html>

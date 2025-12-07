@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Song</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h2>Delete Song</h2>
+
+<label>Enter Song ID to Delete:</label><br>
+<input type="number" id="songId" required>
+<button onclick="deleteSong()">Delete</button>
+
+<br><br>
+<a href="/admin/home">Back to Dashboard</a>
+
+<script>
+function deleteSong() {
+    const id = document.getElementById("songId").value;
+
+    fetch('http://localhost:8082/api/songs/${id}', {
+        method: "DELETE"
+    })
+    .then(res => {
+        if (res.ok) {
+            alert("Song deleted successfully");
+        } else {
+            alert("Song not found");
+        }
+    });
+}
+</script>
+
+</body>
+</html>

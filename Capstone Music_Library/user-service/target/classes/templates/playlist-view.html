@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Playlist</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h2>My Playlists</h2>
+
+<a class = "btn" href="/user/playlists/create">Create new playlist</a>
+<br><br>
+
+<table>
+	<tr>
+	<th>ID</th>
+	<th>Name</th>
+	<th>Songs</th>
+	</tr>
+	
+	<tr th:each="p : ${playlists}">
+		<td th:text="${p.id}"></td>
+		<td th:text="${p.name}"></td>
+		<td th:text="${p.songIds}"></td>
+	</tr>
+	
+</table>
+<br>
+
+  <p><a class="btn" href="/user/home">Back to Home</a></p>
+
+</body>
+</html>

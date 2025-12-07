@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Songs</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #f2f2f2; }
+        button { padding: 5px 8px; border: none; cursor: pointer; }
+        .show { background: green; color: white; }
+        .hide { background: red; color: white; }
+    </style>
+</head>
+
+<body>
+
+<h2>All Songs</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Singer</th>
+            <th>Album</th>
+            <th>Visible?</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="songTable"></tbody>
+</table>
+
+<script>
+    const SONG_SERVICE = "http://localhost:8082/api/songs";
+
+    // LOAD ALL SONGS
+    async function loadSongs() {
+        const res = await fetch(SONG_SERVICE);
+        const data = await res.json();
+
+        const table = document.getElementById("songTable");
+        table.innerHTML = "";  // clear table
+
+        data.forEach(song => {
+            let tr = `
+                <tr>
+                    <td>${song.id}</td>
+                    <td>${song.name}</td>
+                    <td>${song.singer}</td>
+                    <td>${song.albumName}</td>
+                    <td>${song.visible ? "Yes" : "No"}</td>
+                    <td>
+                        <button 
+                            class="${song.visible ? "hide" : "show"}"
+                            onclick="toggleVisibility(${song.id}, ${!song.visible})">
+                            ${song.visible ? "Hide" : "Show"}
+                        </button>
+                    </td>
+                </tr>
+            `;
+            table.innerHTML += tr;
+        });
+    }
+
+    // UPDATE VISIBILITY
+    async function toggleVisibility(id, visible) {
+        await fetch('${SONG_SERVICE}/${id}/visibility?visible=${visible}', {
+            method: "PUT"
+        });
+        loadSongs(); // reload after update
+    }
+
+    loadSongs(); // load at start
+</script>
+
+</body>
+</html>

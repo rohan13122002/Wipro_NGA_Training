@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Song</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h2>Update Song</h2>
+
+<label>Enter Song ID to Update:</label><br>
+<input type="number" id="songId" required>
+<button onclick="loadSong()">Load</button>
+
+<hr>
+
+<form id="updateForm" style="display:none;">
+    <label>Title:</label><br>
+    <input type="text" id="title"><br><br>
+
+    <label>Artist:</label><br>
+    <input type="text" id="artist"><br><br>
+
+    <label>Genre:</label><br>
+    <input type="text" id="genre"><br><br>
+
+    <label>Visible:</label><br>
+    <select id="visible">
+        <option value="true">Visible</option>
+        <option value="false">Hidden</option>
+    </select><br><br>
+
+    <button type="button" onclick="updateSong()">Update Song</button>
+</form>
+
+<br><br>
+<a href="/admin/home">Back to Dashboard</a>
+
+<script>
+function loadSong() {
+    const id = document.getElementById("songId").value;
+
+    fetch('http://localhost:8082/api/songs/${id}')
+        .then(res => {
+            if (!res.ok) {
+                alert("Song not found");
+                return null;
+            }
+            return res.json();
+        })
+        .then(song => {
+            if (!song) return;
+
+            document.getElementById("name").value = song.title;
+            document.getElementById("singer").value = song.artist;
+            document.getElementById("musicDirector").value = song.genre;
+            document.getElementById("visible").value = song.visible;
+
+            document.getElementById("updateForm").style.display = "block";
+        });
+}
+
+function updateSong() {
+    const id = document.getElementById("songId").value;
+
+    const data = {
+        title: document.getElementById("name").value,
+        artist: document.getElementById("singer").value,
+        genre: document.getElementById("musicDirector").value,
+        visible: (document.getElementById("visible").value === "true")
+    };
+
+    fetch('http://localhost:8082/api/songs/${id}', 
+    {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then(() => alert("Song updated successfully"));
+}
+</script>
+
+</body>
+</html>

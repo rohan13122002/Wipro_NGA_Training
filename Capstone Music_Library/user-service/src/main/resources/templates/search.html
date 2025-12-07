@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Search Songs</title>
+<link rel = "stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Search Songs</h2>
+
+  <form action="/user/search/results" method="get">
+    <input type="text" name="q" placeholder="search by title...." required/>
+    <button type="submit">Search</button>
+  </form>
+  
+  <br><br>
+
+  <div>
+    <h3>Results</h3>
+    <div>
+    <ul>
+      
+        <th:block th:each ="s : ${songs}">
+        <li>
+          <b th:text="${s.title}"></b> -
+          <span th:text="${s.artist}"></span>
+        </li>
+        </th:block>
+    </ul>
+  </div>
+  </div>
+
+<br>
+  <p><a href="/user/home">Back to Home</a></p>
+
+</body>
+</html>
